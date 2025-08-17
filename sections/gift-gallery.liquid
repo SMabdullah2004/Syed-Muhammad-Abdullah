@@ -1,0 +1,95 @@
+<section class="gift-gallery">
+  <!-- Page title container -->
+  <div class="page-width">
+    <h2 class="gift-gallery__title">Tisso Vision in the wild</h2> <!-- Section heading -->
+  </div>
+
+  <!-- Gallery grid container -->
+  <div class="page-width">
+    <div class="gift-gallery__grid" id="galleryGrid">
+      <!-- JavaScript will dynamically insert gallery items here -->
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Main gallery section padding */
+  .gift-gallery { 
+    padding: 28px 0 56px; 
+  }
+
+  /* Gallery title styling */
+  .gift-gallery__title { 
+    font-size: clamp(20px, 3vw, 28px); 
+    margin: 0 0 16px; 
+  }
+
+  /* Grid container for gallery items */
+  .gift-gallery__grid {
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns layout */
+  }
+
+  /* Individual gallery item styling */
+  .gift-gallery__item { 
+    position: relative; 
+    display: block; 
+    aspect-ratio: 1/1; /* square items */ 
+    overflow: hidden; 
+    border-radius: 4px; 
+    background: #f5f5f5; 
+  }
+
+  /* Image inside gallery item */
+  .gift-gallery__item img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    display: block; 
+  }
+
+  /* Responsive styling for smaller screens */
+  @media (max-width: 768px) {
+    .gift-gallery__grid { 
+      gap: 8px; 
+      grid-template-columns: repeat(3, 1fr); 
+    }
+  }
+</style>
+
+<script>
+  // Example gallery data array (replace with your own images and links)
+  const galleryData = [
+    { img: "https://via.placeholder.com/400", alt: "Image 1", link: "#" },
+    { img: "https://via.placeholder.com/400", alt: "Image 2", link: "#" },
+    { img: "https://via.placeholder.com/400", alt: "Image 3", link: "#" },
+    { img: "https://via.placeholder.com/400", alt: "Image 4", link: "#" },
+    { img: "https://via.placeholder.com/400", alt: "Image 5", link: "#" },
+    { img: "https://via.placeholder.com/400", alt: "Image 6", link: "#" },
+    { img: "https://via.placeholder.com/400", alt: "Image 7", link: "#" },
+    { img: "https://via.placeholder.com/400", alt: "Image 8", link: "#" },
+    { img: "https://via.placeholder.com/400", alt: "Image 9", link: "#" }
+  ];
+
+  // Get the gallery grid container
+  const galleryGrid = document.getElementById("galleryGrid");
+
+  // Loop through each item in galleryData to create and append elements
+  galleryData.forEach(item => {
+    // Create anchor element for each gallery item
+    const a = document.createElement("a");
+    a.className = "gift-gallery__item"; // Apply gallery item styles
+    if (item.link) a.href = item.link; // Add link if available
+
+    // Create image element
+    const img = document.createElement("img");
+    img.loading = "lazy"; // Lazy-load images for performance
+    img.src = item.img; // Set image source
+    img.alt = item.alt; // Set alt text
+
+    // Append image to anchor and then anchor to grid
+    a.appendChild(img);
+    galleryGrid.appendChild(a);
+  });
+</script>

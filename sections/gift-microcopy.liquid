@@ -1,0 +1,67 @@
+<section class="gift-micro" id="gift-micro">
+  <div class="page-width">
+    <!-- Microcopy text will be injected here -->
+    <p class="gift-micro__text"></p>
+  </div>
+
+  <style>
+    /* Microcopy section styling */
+    .gift-micro {
+      border-top: 1px solid rgba(0,0,0,.06);
+      border-bottom: 1px solid rgba(0,0,0,.06);
+      background: #fff;
+    }
+
+    /* Text styling for microcopy */
+    .gift-micro__text {
+      text-align: center;
+      padding: 10px 0;
+      font-size: 12px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      opacity: .8;
+      margin: 0;
+    }
+  </style>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Get the text element inside microcopy section
+      var textEl = document.querySelector("#gift-micro .gift-micro__text");
+
+      // Example: dynamic settings (replace this with real Shopify settings in JS)
+      var settings = {
+        text: "SUSTAINABLE, ETHICALLY MADE CLOTHES IN SIZES XXS TO 6XL"
+      };
+
+      // If text exists, inject it into the paragraph
+      if (textEl && settings.text) {
+        textEl.textContent = settings.text;
+      }
+    });
+  </script>
+
+  <!--
+    Shopify Schema (for Liquid editor)
+    This defines the settings for the admin panel:
+    - 'text': allows admin to change the microcopy content
+  -->
+  {% schema %}
+  {
+    "name": "Gift Microcopy",
+    "settings": [
+      {
+        "type": "text",
+        "id": "text",
+        "label": "Text",
+        "default": "SUSTAINABLE, ETHICALLY MADE CLOTHES IN SIZES XXS TO 6XL"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Gift Microcopy"
+      }
+    ]
+  }
+  {% endschema %}
+</section>

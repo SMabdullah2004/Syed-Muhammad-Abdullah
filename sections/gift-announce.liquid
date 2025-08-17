@@ -1,0 +1,95 @@
+<section id="gift-announce" class="gift-announce">
+  <div class="page-width gift-announce__inner">
+    <!-- Announcement text -->
+    <span id="gift-copy" class="gift-announce__copy"></span>
+
+    <!-- CTA button, hidden by default -->
+    <a id="gift-cta" class="gift-announce__cta" href="#" style="display:none;">
+      <span id="gift-cta-label"></span> <span aria-hidden>→</span>
+    </a>
+  </div>
+
+  <style>
+    /* Main section styling */
+    .gift-announce { 
+      background: #fff; 
+      border-bottom: 1px solid rgba(0,0,0,.08); 
+    }
+
+    /* Inner container flex layout */
+    .gift-announce__inner { 
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between; 
+      gap: 16px; 
+      padding: 10px 0; 
+    }
+
+    /* Announcement text styling */
+    .gift-announce__copy { 
+      font-size: 14px; 
+      line-height: 1.4; 
+    }
+
+    /* CTA button styling */
+    .gift-announce__cta { 
+      display: inline-flex; 
+      align-items: center; 
+      gap: 8px; 
+      padding: 10px 14px; 
+      border-radius: 8px; 
+      text-decoration: none; 
+      background: #ffd400; 
+      color: #111; 
+      font-weight: 600; 
+    }
+
+    /* Responsive: wrap on small screens */
+    @media (max-width: 640px) { 
+      .gift-announce__inner { 
+        flex-wrap: wrap; 
+      } 
+    }
+  </style>
+
+  <!--
+    Shopify Schema (for Liquid editor)
+    Defines editable fields:
+      - copy: announcement text
+      - cta_label: text on CTA button
+      - cta_link: link for CTA button
+  -->
+  {% schema %}
+  {
+    "name": "Gift Announcement",
+    "settings": [
+      { "type": "text", "id": "copy", "label": "Text", "default": "Find the ideal gift for your loved ones." },
+      { "type": "text", "id": "cta_label", "label": "CTA label", "default": "CHOOSE GIFT" },
+      { "type": "url",  "id": "cta_link",  "label": "CTA link",  "default": "/collections/all" }
+    ],
+    "presets": [{ "name": "Gift Announcement" }]
+  }
+  {% endschema %}
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Get section settings from Shopify Liquid
+    const sectionData = {
+      copy: "{{ section.settings.copy | escape }}",
+      cta_label: "{{ section.settings.cta_label | escape }}",
+      cta_link: "{{ section.settings.cta_link }}"
+    };
+
+    // Insert announcement text
+    document.getElementById("gift-copy").textContent = sectionData.copy;
+
+    // Insert CTA button if label and link are provided
+    if (sectionData.cta_label && sectionData.cta_link) {
+      const cta = document.getElementById("gift-cta");
+      cta.href = sectionData.cta_link;
+      document.getElementById("gift-cta-label").textContent = sectionData.cta_label;
+      cta.style.display = "inline-flex"; // Show the button
+    }
+  });
+</script>

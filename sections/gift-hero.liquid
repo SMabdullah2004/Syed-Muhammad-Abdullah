@@ -1,0 +1,129 @@
+<section id="gift-hero" class="gift-hero">
+  <div class="page-width">
+    <div id="gift-hero-frame" class="gift-hero__frame">
+      <div class="gift-hero__content">
+        <!-- Main hero title -->
+        <h1 id="gift-hero-title" class="gift-hero__title"></h1>
+
+        <!-- Hero subtitle -->
+        <p id="gift-hero-sub" class="gift-hero__sub"></p>
+
+        <!-- Hero CTA button -->
+        <a id="gift-hero-btn" class="gift-hero__btn" href="#"></a>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    /* Hero section padding */
+    .gift-hero { padding: 24px 0 8px; }
+
+    /* Hero frame styling */
+    .gift-hero__frame {
+      position: relative;
+      min-height: clamp(360px, 58vw, 640px);
+      border: clamp(3px, .5vw, 6px) solid #ffd400;
+      border-radius: 4px;
+      overflow: hidden;
+      background: #fff;
+      display: grid;
+      place-items: center;
+      padding: clamp(16px, 2vw, 32px);
+      isolation: isolate;
+    }
+
+    /* Hero background pseudo-element */
+    .gift-hero__frame::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background-size: cover;
+      background-position: center;
+      filter: none;
+    }
+
+    /* Hero content container */
+    .gift-hero__content {
+      max-width: 720px;
+      text-align: left;
+      background: rgba(255,255,255,.9);
+      padding: clamp(12px,1.8vw,20px);
+      border-radius: 8px;
+    }
+
+    /* Hero title styling */
+    .gift-hero__title {
+      font-size: clamp(28px, 6vw, 56px);
+      line-height: 1.1;
+      margin: 0 0 10px;
+    }
+
+    /* Hero subtitle styling */
+    .gift-hero__sub {
+      font-size: clamp(14px, 2.6vw, 18px);
+      margin: 0 0 18px;
+      color: #111;
+      opacity: .8;
+    }
+
+    /* Hero button styling */
+    .gift-hero__btn {
+      display: inline-block;
+      padding: 12px 22px;
+      background: #111;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+    .subheading {
+  white-space: pre-line;
+}
+
+
+    /* Responsive min-height for large screens */
+    @media (min-width:1920px){ .gift-hero__frame{ min-height:720px } } 
+    @media (min-width:2560px){ .gift-hero__frame{ min-height:820px } }
+    @media (min-width:3440px){ .gift-hero__frame{ min-height:900px } }
+  </style>
+</section>
+
+<script>
+  // Simulated Shopify section settings
+  const sectionSettings = {
+    bg: 'https://cdn.shopify.com/s/files/1/0000/0000/files/doodle-bg.jpg?v=1690000000',
+    heading: 'The Gift Guide',
+    subheading: `Find the perfect gift for everyone on your list
+Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season`,
+
+    button_label: 'SHOP NOW',
+    button_link: '/collections/all'
+  };
+
+  // Grab DOM elements
+  const heroFrame = document.getElementById('gift-hero-frame');
+  const heroTitle = document.getElementById('gift-hero-title');
+  const heroSub = document.getElementById('gift-hero-sub');
+  const heroBtn = document.getElementById('gift-hero-btn');
+
+  // Set hero background dynamically
+  if (sectionSettings.bg) {
+    heroFrame.style.setProperty('--hero-bg', `url('${sectionSettings.bg}')`);
+  }
+
+  // Set hero content dynamically
+  heroTitle.textContent = sectionSettings.heading || '';
+
+  // Use CSS white-space to respect line breaks
+  heroSub.style.whiteSpace = 'pre-line';
+  heroSub.textContent = sectionSettings.subheading || '';
+
+  // Set hero button dynamically or hide if missing
+  if (sectionSettings.button_label && sectionSettings.button_link) {
+    heroBtn.textContent = sectionSettings.button_label;
+    heroBtn.href = sectionSettings.button_link;
+  } else {
+    heroBtn.style.display = 'none';
+  }
+</script>

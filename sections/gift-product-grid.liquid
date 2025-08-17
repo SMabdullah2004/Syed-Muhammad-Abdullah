@@ -1,0 +1,97 @@
+<section class="gift-products page-width">
+  <!-- Section title -->
+  <h2 class="gift-products__title" id="giftTitle">Featured</h2>
+
+  <!-- Grid container where products will be dynamically inserted -->
+  <div class="gift-products__grid" id="giftGrid"></div>
+
+  <!-- Message displayed when no products are available -->
+  <p id="noProductsMsg" style="display:none;">
+    No products found. Choose a collection in settings.
+  </p>
+</section>
+
+<style>
+  /* Main section padding */
+  .gift-products { 
+    padding: 36px 0 64px; 
+  }
+
+  /* Section title styling */
+  .gift-products__title { 
+    font-size: clamp(20px,3vw,28px); 
+    margin: 0 0 16px; 
+  }
+
+  /* Grid layout for products */
+  .gift-products__grid { 
+    display: grid; 
+    gap: 16px; 
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on mobile */
+  }
+
+  /* 4 columns on medium+ screens */
+  @media(min-width: 768px){ 
+    .gift-products__grid { 
+      grid-template-columns: repeat(4, 1fr); 
+    } 
+  }
+
+  /* Individual product card */
+  .gift-products__item { 
+    border: 1px solid #ddd; 
+    padding: 12px; 
+    border-radius: 8px; 
+    text-align: center; 
+  }
+
+  /* Product image styling */
+  .gift-products__item img { 
+    max-width: 100%; 
+    border-radius: 6px; 
+  }
+</style>
+
+<script>
+  // Example product data (replace with real backend/API data)
+  const products = [
+    { title: "Red Hoodie", image: "https://via.placeholder.com/300x300", price: "$49.99" },
+    { title: "Blue Sneakers", image: "https://via.placeholder.com/300x300", price: "$79.99" },
+    { title: "Black Cap", image: "https://via.placeholder.com/300x300", price: "$19.99" },
+    { title: "Grey T-shirt", image: "https://via.placeholder.com/300x300", price: "$29.99" }
+  ];
+
+  const limit = 8; // Maximum number of products to display
+  const grid = document.getElementById("giftGrid"); // Product grid container
+  const noProductsMsg = document.getElementById("noProductsMsg"); // Message when no products
+
+  // Function to render products on the page
+  function renderProducts() {
+    grid.innerHTML = ""; // Clear existing items
+
+    // Show message if no products are available
+    if (products.length === 0) {
+      noProductsMsg.style.display = "block";
+      return;
+    }
+
+    // Loop through products up to the limit
+    products.slice(0, limit).forEach(product => {
+      const item = document.createElement("div");
+      item.classList.add("gift-products__item");
+
+      // Insert product image, title, and price
+      item.innerHTML = `
+        <img src="${product.image}" alt="${product.title}">
+        <h3>${product.title}</h3>
+        <p>${product.price}</p>
+      `;
+      
+      // Append the product card to the grid
+      grid.appendChild(item);
+    });
+  }
+
+  // Run render function on page load
+  renderProducts();
+</script>
