@@ -72,31 +72,19 @@
   {% endif %}
 </a>
 
-<!-- ✅ Added Animated Button -->
-<a href="/collections/all" class="choose-gift-btn">
+<!-- ✅ Added Animated "Choose Gift" Button -->
+<a href="{{ routes.all_products_collection_url }}" class="choose-gift-btn">
   Choose Gift <span class="arrow">→</span>
 </a>
 
-{% stylesheet %}
-  .header-logo {
-    display: flex;
-    height: 100%;
-    font-size: var(--font-size--md);
-    font-family: var(--font-family);
-    font-weight: var(--font-weight);
-    font-style: var(--font-style);
-    color: var(--color-foreground);
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-    margin-inline: calc(-1 * var(--padding-inline-start));
-  }
-
+<style>
   .header-logo__image {
     object-fit: contain;
     height: var(--header-logo-image-height-mobile);
     width: var(--header-logo-image-width-mobile);
-    @media screen and (min-width: 750px) {
+  }
+  @media screen and (min-width: 750px) {
+    .header-logo__image {
       height: var(--header-logo-image-height);
       width: var(--header-logo-image-width);
     }
@@ -132,7 +120,7 @@
   .choose-gift-btn:hover {
     background-color: #FFC800;
   }
-{% endstylesheet %}
+</style>
 
 {% schema %}
 {
