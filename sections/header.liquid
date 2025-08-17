@@ -49,7 +49,8 @@
     --font-style: var(--font-body--style); 
     --font-weight: 600; 
   "
-  {{ block.shopify_attributes }}
+ {{ block.settings.logo }}
+
 >
 {% liquid 
   assign logo_width = block_settings.custom_height | times: settings.logo.aspect_ratio | ceil 
